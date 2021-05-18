@@ -114,12 +114,17 @@ set(PROJECT_SOURCES
 # Set icon file for windows
 if(WIN32)
     set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/logo/translateLocally.rc")
+elseif(APPLE)
+    set(MACOSX_BUNDLE_ICON_FILE "translateLocally.icns")
+    set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/logo/translateLocally.icns)
+    set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES
+           MACOSX_PACKAGE_LOCATION "Resources")
 endif(WIN32)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
    if(APPLE)
      qt_add_executable(translateLocally MACOSX_BUNDLE
-       ${PROJECT_SOURCES}
+       ${PROJECT_SOURCES} ${APP_ICON_MACOSX}
      )
    endif()
 
@@ -137,7 +142,7 @@ else()
     else()
         if(APPLE)
           add_executable(translateLocally MACOSX_BUNDLE
-              ${PROJECT_SOURCES}
+              ${PROJECT_SOURCES} ${APP_ICON_MACOSX}
           )
         endif()
         add_executable(translateLocally-bin
