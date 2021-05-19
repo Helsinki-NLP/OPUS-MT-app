@@ -176,6 +176,10 @@ if(UNIX)  # Add Linux and apple support for make install
   install(TARGETS translateLocally-bin
           RUNTIME
          )
+  install(FILES ${CMAKE_SOURCE_DIR}/dist/translateLocally.desktop DESTINATION share/applications)
+  install(FILES ${CMAKE_SOURCE_DIR}/logo/translateLocally_logo.png DESTINATION share/icons)
+  install(FILES ${CMAKE_SOURCE_DIR}/logo/translateLocally_logo.svg DESTINATION share/icons)
+
   ## Support CPACK package generation on debian like systems
   #
   #
