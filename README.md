@@ -10,7 +10,7 @@ and integrates publically avaiable translation models from the [OPUS-MT project]
 The app is in development and we provide a preliminary test version with no guarantees.
 The list of models will be extended in the near future and additional pre-compiled binaries will be available for download. Currently, you can use the following distributions:
 
-* [Mac OSX](https://translatelocally.com/opusMT.dmg)
+* [Mac OSX](https://object.pouta.csc.fi/OPUS-MT-models/app/opusMT.dmg)
 * [Source code](https://github.com/Helsinki-NLP/OPUS-MT-app)
 
 
