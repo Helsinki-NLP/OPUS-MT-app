@@ -1,3 +1,6 @@
 [submodule "3rd_party/bergamot-translator"]
 	path = 3rd_party/bergamot-translator
 	url = https://github.com/browsermt/bergamot-translator.git
+[submodule "3rd_party/marian-dev"]
+	path = 3rd_party/marian-dev
+	url = https://github.com/browsermt/marian-dev

@@ -17,7 +17,7 @@ static void CLIArgumentInit(QApplication& translateLocallyApp, QCommandLineParse
     parser.addOption({{"l", "list-models"}, QObject::tr("List locally installed models.")});
     parser.addOption({{"a", "available-models"}, QObject::tr("Connect to the Internet and list available models. Only shows models that are NOT installed locally or have a new version available online.")});
     parser.addOption({{"d", "download-model"}, QObject::tr("Connect to the Internet and download a model."), "output", ""});
-    parser.addOption({{"r", "remove-model"}, QObject::tr("Remove a model from the local machine. Only works for models managed with translateLocally."), "output", ""});
+    parser.addOption({{"r", "remove-model"}, QObject::tr("Remove a model from the local machine. Only works for models managed with OPUS-MT."), "output", ""});
     parser.addOption({{"m", "model"}, QObject::tr("Select model for translation."), "model", ""});
     parser.addOption({{"i", "input"}, QObject::tr("Source translation file (or just used stdin)."), "input", ""});
     parser.addOption({{"o", "output"}, QObject::tr("Target translation file (or just used stdout)."), "output", ""});
