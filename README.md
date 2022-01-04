@@ -79,27 +79,20 @@ Options:
 Models can be downloaded from the GUI or the CLI. For the CLI model management you need to:
 ```bash
 $ ./opusMT -a
-Czech-English type: base version: 1; To download do -d cs-en-base
-German-English type: base version: 2; To download do -d de-en-base
-English-Czech type: base version: 1; To download do -d en-cs-base
-English-German type: base version: 2; To download do -d en-de-base
-English-Estonian type: tiny version: 1; To download do -d en-et-tiny
-Estonian-English type: tiny version: 1; To download do -d et-en-tiny
-Icelandic-English type: tiny version: 1; To download do -d is-en-tiny
-Norwegian (Bokmal)-English type: tiny version: 1; To download do -d nb-en-tiny
-Norwegian (Nynorsk)-English type: tiny version: 1; To download do -d nn-en-tiny
+English-Finnish type: tiny version: 1; To download do -d eng-fin-tiny
+Swedish-Finnish type: tiny version: 1; To download do -d swe-fin-tiny
 
-$ ./opusMT -d en-et-tiny
-Downloading English-Estonian type: tiny...
+$ ./opusMT -d eng-fin-tiny
+Downloading English-Finnish type tiny...
 100% [############################################################]
-Model downloaded succesffully! You can now invoke it with -m en-et-tiny
+Model downloaded successfully! You can now invoke it with -m eng-fin-tiny
 ```
 
 ## Removing models from the CLI
 Models can be removed from the GUI or the CLI. For the CLI model removal, you need to:
 ```bash
-./opusMT -r en-et-tiny
-Model English-Estonian type tiny successfully removed.
+./opusMT -r eng-fin-tiny
+Model English-Finnish type tiny successfully removed.
 ```
 
 ## Listing available models
