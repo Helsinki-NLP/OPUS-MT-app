@@ -124,7 +124,7 @@ jobs:
       working-directory: ${{github.workspace}}/build
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: cmake --build . --config $BUILD_TYPE -j3 --target translateLocally-bin translateLocally.dmg
+      run: cmake --build . --config $BUILD_TYPE -j3 --target opusMT-bin opusMT.dmg
 
     - name: ccache epilog
       run: 'ccache -s # Print current cache stats'
@@ -133,7 +133,7 @@ jobs:
       if: ${{matrix.arch == 'core-avx-i'}} #MacOS machines are avx so they can't run avx2 steps.
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: ./translateLocally --version
+      run: ./opusMT --version
 
     - name: Produce DMG and Sign # This overrides the previous dmg # We follow https://localazy.com/blog/how-to-automatically-sign-macos-apps-using-github-actions
       working-directory: ${{github.workspace}}/build               # it should be secure as those can't leak unless we accept a PR with a bad workflow.
@@ -157,13 +157,13 @@ jobs:
       working-directory: ${{github.workspace}}/build
       shell: bash
       run: |
-          mv translateLocally.dmg translateLocally.${{ matrix.os }}.${{ matrix.arch }}.dmg
+          mv opusMT.dmg opusMT.${{ matrix.os }}.${{ matrix.arch }}.dmg
           ls *.dmg
 
     - uses: actions/upload-artifact@v2
       with:
-        name: translateLocally.latest.${{ matrix.os }}.${{ matrix.arch }}.dmg
-        path: ${{github.workspace}}/build/translateLocally.*.dmg
+        name: opusMT.latest.${{ matrix.os }}.${{ matrix.arch }}.dmg
+        path: ${{github.workspace}}/build/opusMT.*.dmg
 
   build-ubuntu:
     strategy:
@@ -264,7 +264,7 @@ jobs:
     - name: Output test # @TODO some more complicated test, perhaps a unit test
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: xvfb-run --auto-servernum ./translateLocally --version # Can't run normally due to not having X server set up
+      run: xvfb-run --auto-servernum ./opusMT --version # Can't run normally due to not having X server set up
 
     - name: Package # Produce a .deb file using cpack
       working-directory: ${{github.workspace}}/build
@@ -276,7 +276,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: translateLocally.latest.${{ matrix.os }}.${{ matrix.arch }}.deb
+        name: opusMT.latest.${{ matrix.os }}.${{ matrix.arch }}.deb
         path: ${{github.workspace}}/build/deb/*.deb
 
   build-windows:
@@ -377,13 +377,13 @@ jobs:
     - name: Test and add architecture information to the build
       working-directory: ${{github.workspace}}/build/Release
       run: |
-        ./translateLocally.exe --help
-        mv translateLocally.exe translateLocally.${{ matrix.os }}.${{ matrix.arch }}.exe
+        ./opusMT.exe --help
+        mv opusMT.exe opusMT.${{ matrix.os }}.${{ matrix.arch }}.exe
       shell: powershell
       
     - uses: actions/upload-artifact@v2
       with:
-        name: translateLocally.latest.${{ matrix.os }}.${{ matrix.arch }}.exe
+        name: opusMT.latest.${{ matrix.os }}.${{ matrix.arch }}.exe
         path: ${{github.workspace}}/build/Release/*.exe
     
       
@@ -405,6 +405,6 @@ jobs:
          prerelease: true
          title: "Latest Build"
          files: |
-                /home/runner/work/translateLocally/translateLocally/*.dmg/*.dmg
-                /home/runner/work/translateLocally/translateLocally/*.deb/*.deb
-                /home/runner/work/translateLocally/translateLocally/*.exe/*.exe
+                /home/runner/work/opusMT/opusMT/*.dmg/*.dmg
+                /home/runner/work/opusMT/opusMT/*.deb/*.deb
+                /home/runner/work/opusMT/opusMT/*.exe/*.exe
