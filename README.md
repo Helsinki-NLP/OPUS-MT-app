@@ -10,8 +10,9 @@ and integrates publically avaiable translation models from the [OPUS-MT project]
 The app is in development and we provide a preliminary test version with no guarantees.
 The list of models will be extended in the near future and additional pre-compiled binaries will be available for download. Currently, you can use the following distributions:
 
-* [Mac OSX](https://translatelocally.com/opusMT.dmg)
+* [Mac OSX](https://object.pouta.csc.fi/OPUS-MT-models/app/opusMT.dmg)
 * [Source code](https://github.com/Helsinki-NLP/OPUS-MT-app)
+
 
 
 
@@ -29,12 +30,12 @@ make -j5
 Requires `QT>=5 libarchive intel-mkl-static`. We make use of the `QT>=5 network`, `QT>=5 linguisticTool` and `QT>=5 svg` components. Depending on your distro, those may be split in separate package from your QT package (Eg `qt{6/7}-tools-dev`; `qt{5/6}-svg` or `libqt5svg5-dev`). QT6 is fully supported and its use is encouraged. `intel-mkl-static` may be part of `mkl` or `intel-mkl` packages.
 
 ## MacOS Build
-On MacOS, translateLocally doesn't rely on MKL, but instead on Apple accelerate. If you want to build a portable executable that is able to run on multiple machines, we recommend using Qt's distribution of Qt, as opposed to homebrew's due to issues with [macdeployqt](https://github.com/XapaJIaMnu/translateLocally/issues/69). To produce a `.dmg`do:
+On MacOS, opusMT doesn't rely on MKL, but instead on Apple accelerate. If you want to build a portable executable that is able to run on multiple machines, we recommend using Qt's distribution of Qt, as opposed to homebrew's due to issues with [macdeployqt](https://github.com/XapaJIaMnu/translateLocally/issues/69). To produce a `.dmg`do:
 ```bash
 mkdir build
 cd build
 cmake ..
-cmake --build . -j3 --target translateLocally-bin translateLocally.dmg
+cmake --build . -j3 --target opusMT-bin opusMT.dmg
 ```
 Alternatively, if you wish to sign and notarize the `.dmg`for distribution, you may use [macdmg.sh](dist/macdmg.sh)
 ```bash
@@ -121,9 +122,9 @@ sacrebleu -t wmt13 -l en-es --echo ref > /tmp/es.in
 ./opusMT -m es-en-tiny -i /tmp/es.in -o /tmp/en.out
 ```
 
-Note that if you are using the macOS translateLocally.app version, the `-i` and `-o` options are not able to read most files. You can use pipes instead, e.g.
+Note that if you are using the macOS opusMT.app version, the `-i` and `-o` options are not able to read most files. You can use pipes instead, e.g.
 ```bash
-translateLocally.app/Contents/MacOS/translateLocally -m es-en-tiny < input.txt > output.txt
+opusMT.app/Contents/MacOS/opusMT -m es-en-tiny < input.txt > output.txt
 ```
 
 ## Pivoting and piping
@@ -159,9 +160,9 @@ opusMT v0.0.2+a603422
 Note that this issue only occurs on Linux, as Windows and Mac (at least to my knowledge) always have an active display even in remote sessions.
 
 # Importing custom models
-translateLocally supports importing custom models. translateLocally uses the [Bergamot](https://github.com/browsermt/marian-dev) fork of [marian](https://github.com/marian-nmt/marian-dev). As such, it supports the vast majority marian models out of the box. You can just train your marian model and place it a directory. 
+opusMT supports importing custom models. opusMT uses the [Bergamot](https://github.com/browsermt/marian-dev) fork of [marian](https://github.com/marian-nmt/marian-dev). As such, it supports the vast majority marian models out of the box. You can just train your marian model and place it a directory. 
 ## Basic model import
-The directory structure of a translateLocally model looks like this:
+The directory structure of a opusMT model looks like this:
 ```bash
 $ tree my-custom-model
 my-custom-model/
@@ -170,7 +171,7 @@ my-custom-model/
 ├── model.npz
 └── vocab.deen.spm
 ```
-The `config.intgemm8bitalpha.yml` name is hardcoded, and so is `model_info.json`. Everything else could have an arbitrary name. translateLocally will load the model according to the settings specified in `config.intgemm8bitalpha.yml`. These are just normal marian configuration options. `model_info.json` contains metadata about the model:
+The `config.intgemm8bitalpha.yml` name is hardcoded, and so is `model_info.json`. Everything else could have an arbitrary name. opusMT will load the model according to the settings specified in `config.intgemm8bitalpha.yml`. These are just normal marian configuration options. `model_info.json` contains metadata about the model:
 ```bash
 $ cat model_info.json 
 {
@@ -187,10 +188,10 @@ Once the files are in place, tar the model:
 ```bash
 $ tar -czvf my-custom-model.tar.gz my-custom-model
 ```
-And you can import it via the GUI: Open translateLocally and go to **Edit -> Translator Settings -> Languages -> Import model** and navigate to the archive you created. 
+And you can import it via the GUI: Open opusMT and go to **Edit -> Translator Settings -> Languages -> Import model** and navigate to the archive you created. 
 
 ## Quantising the model
-The process described above will create a model usable by translateLocally, albeit not a very efficient one. In order to create an efficient model we recommend that you quantise the model to 8-bit integers. You can do that by downloading and compiling the [Bergamot](https://github.com/browsermt/marian-dev) fork of marian, and using `marian-conv` to create the quantised model:
+The process described above will create a model usable by opusMT, albeit not a very efficient one. In order to create an efficient model we recommend that you quantise the model to 8-bit integers. You can do that by downloading and compiling the [Bergamot](https://github.com/browsermt/marian-dev) fork of marian, and using `marian-conv` to create the quantised model:
 ```bash
 $MARIAN/marian-conv -f input_model.npz -t output_model.bin --gemm-type intgemm8
 ```
