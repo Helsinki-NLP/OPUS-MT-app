@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-input_filepath="translateLocally_logo.png" 
-output_iconset_name="translateLocally.iconset"
+
+# input_filepath="translateLocally_logo.png"
+# output_iconset_name="translateLocally.iconset"
+
+input_filepath="opus_mt.png"
+output_iconset_name="opus_mt.iconset"
+
 mkdir -p $output_iconset_name
 
 sips -z 16 16     $input_filepath --out "${output_iconset_name}/icon_16x16.png"

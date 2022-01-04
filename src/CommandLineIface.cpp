@@ -77,7 +77,7 @@ int CommandLineIface::run(QCommandLineParser const &parser) {
             return 6;
         }
         if (!deleted) {
-            qCritical().noquote() << "Unable to remove model " << parser.isSet("r") << " from the local machine. Perhaps it is not managed by translateLocally?";
+            qCritical().noquote() << "Unable to remove model " << parser.isSet("r") << " from the local machine. Perhaps it is not managed by OPUS-MT?";
             return 7;
         }
         QTextStream out(stdout);
@@ -119,7 +119,7 @@ int CommandLineIface::run(QCommandLineParser const &parser) {
             }
         }
         if (modelpath.isEmpty()) {
-            qCritical() << "We could not find a model identified as:" << model_shortname << ". Use translateLocally -l to list available models or use the GUI to download some from the internet.";
+            qCritical() << "We could not find a model identified as:" << model_shortname << ". Use opusMT -l to list available models or use the GUI to download some from the internet.";
             return 1;
         }
 

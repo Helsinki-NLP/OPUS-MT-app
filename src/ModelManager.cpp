@@ -55,7 +55,7 @@ ModelManager::ModelManager(QObject *parent)
 {
     // Create/Load Settings and create a directory on the first run. Use mock QSEttings, because we want nativeFormat, but we don't want ini on linux.
     // NativeFormat is not always stored in config dir, whereas ini is always stored. We used the ini format to just get a path to a dir.
-    configDir_ = QFileInfo(QSettings(QSettings::IniFormat, QSettings::UserScope, "translateLocally", "translateLocally").fileName()).absoluteDir();
+    configDir_ = QFileInfo(QSettings(QSettings::IniFormat, QSettings::UserScope, "opusMT", "opusMT").fileName()).absoluteDir();
     if (!QDir(configDir_).exists()) {
         if (QFileInfo::exists(configDir_.absolutePath())) {
             std::cerr << "We want to store data at a directory at: " << configDir_.absolutePath().toStdString() << " but a file with the same name exists." << std::endl;
@@ -279,7 +279,7 @@ Model ModelManager::parseModelInfo(QJsonObject& obj, translateLocally::models::L
         model.set(criticalKey, iter.value().toString());
     } else {
         emit error(tr("The json file provided is missing '%1' or is corrupted. Please redownload the model. "
-                      "If the path variable is missing, it is added automatically, so please file a bug report at: https://github.com/XapaJIaMnu/translateLocally/issues").arg(criticalKey));
+                      "If the path variable is missing, it is added automatically, so please file a bug report at: https://github.com/Helsinki-NLP/OPUS-MT-app/issues").arg(criticalKey));
         return Model{};
     }
 
