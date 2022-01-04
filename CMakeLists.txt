@@ -182,7 +182,7 @@ endif(WIN32)
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
    if(APPLE)
 
-     qt_add_executable(translateLocally MACOSX_BUNDLE
+     qt_add_executable(opusMT MACOSX_BUNDLE
        ${PROJECT_SOURCES}
        ${APP_ICON_MACOSX}
        ${APP_ENTITLEMENTS_MACOSX}
@@ -298,7 +298,7 @@ if(APPLE) # Apple specific installation of the app
     MACOSX_BUNDLE_BUNDLE_NAME ${CMAKE_PROJECT_NAME}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION_STRING_FULL}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
-    MACOSX_BUNDLE_GUI_IDENTIFIER "com.translatelocally.translateLocally"
+    MACOSX_BUNDLE_GUI_IDENTIFIER "com.translatelocally.opusMT"
     )
   # When on MacOS, we have a non-standard libarchive location because we get it via brew
   target_include_directories(opusMT-bin PRIVATE ${LibArchive_INCLUDE_DIR})
