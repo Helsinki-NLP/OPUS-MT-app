@@ -26,7 +26,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ##### opusMT options begin #####
 set(BUILD_EXTERNAL_LIBARCHIVE OFF CACHE BOOL "Build libarchive as external project.")
 set(APPLE_FORCE_STATIC_LIBARCHIVE ON CACHE BOOL "Link to static libarchive on Mac.")
-## set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /opt/local/lib/libiconv.a")
 ##### opusMT options end   #####
 
 # Determine build arch
@@ -169,8 +168,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 # Set icon file for windows
 if(WIN32)
-    # set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/logo/opusMT.rc")
-    set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/logo/opus_mt.rc")
+    set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/logo/opusMT.rc")
 elseif(APPLE)
     set(MACOSX_BUNDLE_ICON_FILE "opusMT.icns")
     set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/logo/opusMT.icns)
@@ -202,7 +200,7 @@ else()
         )
     else()
         if(APPLE)
-          add_executable(translateLocally MACOSX_BUNDLE
+          add_executable(opusMT MACOSX_BUNDLE
               ${PROJECT_SOURCES}
               ${APP_ICON_MACOSX}
               ${APP_ENTITLEMENTS_MACOSX}
@@ -245,9 +243,8 @@ if(UNIX)  # Add Linux and apple support for make install
           RUNTIME
          )
   install(FILES ${CMAKE_SOURCE_DIR}/dist/opusMT.desktop DESTINATION share/applications)
-  # install(FILES ${CMAKE_SOURCE_DIR}/logo/opusMT_logo.png DESTINATION share/icons)
-  # install(FILES ${CMAKE_SOURCE_DIR}/logo/opusMT_logo.svg DESTINATION share/icons)
-  install(FILES ${CMAKE_SOURCE_DIR}/logo/opus_mt.png DESTINATION share/icons)
+  install(FILES ${CMAKE_SOURCE_DIR}/logo/opusMT_logo.png DESTINATION share/icons)
+  install(FILES ${CMAKE_SOURCE_DIR}/logo/opusMT_logo.svg DESTINATION share/icons)
 
     if(NOT APPLE)
         ## Support CPACK package generation on debian like systems
@@ -298,7 +295,7 @@ if(APPLE) # Apple specific installation of the app
     MACOSX_BUNDLE_BUNDLE_NAME ${CMAKE_PROJECT_NAME}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION_STRING_FULL}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
-    MACOSX_BUNDLE_GUI_IDENTIFIER "com.translatelocally.opusMT"
+    MACOSX_BUNDLE_GUI_IDENTIFIER "com.opusmt.opusMT"
     )
   # When on MacOS, we have a non-standard libarchive location because we get it via brew
   target_include_directories(opusMT-bin PRIVATE ${LibArchive_INCLUDE_DIR})
