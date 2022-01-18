@@ -6,7 +6,7 @@ if(APPLE) # This needs to happen before the project definition due to a cmake bu
   set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15" CACHE STRING "Minimum OS X deployment version")
 endif(APPLE)
 
-project(translateLocally LANGUAGES CXX)
+project(opusMT LANGUAGES CXX)
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(CMakeDependentOption)
@@ -23,10 +23,10 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-##### translateLocally options begin #####
+##### opusMT options begin #####
 set(BUILD_EXTERNAL_LIBARCHIVE OFF CACHE BOOL "Build libarchive as external project.")
 set(APPLE_FORCE_STATIC_LIBARCHIVE ON CACHE BOOL "Link to static libarchive on Mac.")
-##### translateLocally options end   #####
+##### opusMT options end   #####
 
 # Determine build arch
 set(BUILD_ARCH native CACHE STRING "Compile for this CPU architecture.")
@@ -121,7 +121,7 @@ SET(USE_WASM_COMPATIBLE_SOURCE OFF CACHE BOOL "Don't build wasm compatible sourc
 add_subdirectory(3rd_party)
 # end of marian options
 
-#set(TS_FILES translateLocally_es_ES.ts) //Causes compilation to go on forever...
+#set(TS_FILES opusMT_es_ES.ts) //Causes compilation to go on forever...
 # Set up source
 include_directories(src)
 include_directories(logo)
@@ -168,11 +168,11 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 # Set icon file for windows
 if(WIN32)
-    set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/logo/translateLocally.rc")
+    set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/logo/opusMT.rc")
 elseif(APPLE)
-    set(MACOSX_BUNDLE_ICON_FILE "translateLocally.icns")
-    set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/logo/translateLocally.icns)
-    set(APP_ENTITLEMENTS_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/dist/translateLocally.entitlements)
+    set(MACOSX_BUNDLE_ICON_FILE "opusMT.icns")
+    set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/logo/opusMT.icns)
+    set(APP_ENTITLEMENTS_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/dist/opusMT.entitlements)
     set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
     set_source_files_properties(${APP_ENTITLEMENTS_MACOSX} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 endif(WIN32)
@@ -187,7 +187,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
      )
    endif()
 
-    qt_add_executable(translateLocally-bin
+    qt_add_executable(opusMT-bin
        ${PROJECT_SOURCES}
        ${APP_ICON_RESOURCE_WINDOWS}
     )
@@ -195,18 +195,18 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 else()
     if(ANDROID)
-        add_library(translateLocally-bin SHARED
+        add_library(opusMT-bin SHARED
             ${PROJECT_SOURCES}
         )
     else()
         if(APPLE)
-          add_executable(translateLocally MACOSX_BUNDLE
+          add_executable(opusMT MACOSX_BUNDLE
               ${PROJECT_SOURCES}
               ${APP_ICON_MACOSX}
               ${APP_ENTITLEMENTS_MACOSX}
           )
         endif()
-        add_executable(translateLocally-bin
+        add_executable(opusMT-bin
               ${PROJECT_SOURCES}
               ${APP_ICON_RESOURCE_WINDOWS}
         )
@@ -216,7 +216,7 @@ else()
 endif()
 
 if(WIN32) # Do not launch console on win32
-    set_property(TARGET translateLocally-bin PROPERTY WIN32_EXECUTABLE TRUE)
+    set_property(TARGET opusMT-bin PROPERTY WIN32_EXECUTABLE TRUE)
 endif()
 
 
@@ -233,18 +233,18 @@ set(LINK_LIBRARIES
     ${LibArchive_LIBRARIES}
     ${CMAKE_DL_LIBS}) # On unix necessary sometimes
 
-# Reserve the translateLocally name for the MacOS executables. Rename the Linux and Windows executable to translateLocally after compilation
-target_link_libraries(translateLocally-bin PRIVATE ${LINK_LIBRARIES})
-set_target_properties(translateLocally-bin PROPERTIES OUTPUT_NAME translateLocally)
+# Reserve the opusMT name for the MacOS executables. Rename the Linux and Windows executable to opusMT after compilation
+target_link_libraries(opusMT-bin PRIVATE ${LINK_LIBRARIES})
+set_target_properties(opusMT-bin PROPERTIES OUTPUT_NAME opusMT)
 
 if(UNIX)  # Add Linux and apple support for make install
   include(GNUInstallDirs)
-  install(TARGETS translateLocally-bin
+  install(TARGETS opusMT-bin
           RUNTIME
          )
-  install(FILES ${CMAKE_SOURCE_DIR}/dist/translateLocally.desktop DESTINATION share/applications)
-  install(FILES ${CMAKE_SOURCE_DIR}/logo/translateLocally_logo.png DESTINATION share/icons)
-  install(FILES ${CMAKE_SOURCE_DIR}/logo/translateLocally_logo.svg DESTINATION share/icons)
+  install(FILES ${CMAKE_SOURCE_DIR}/dist/opusMT.desktop DESTINATION share/applications)
+  install(FILES ${CMAKE_SOURCE_DIR}/logo/opusMT_logo.png DESTINATION share/icons)
+  install(FILES ${CMAKE_SOURCE_DIR}/logo/opusMT_logo.svg DESTINATION share/icons)
 
     if(NOT APPLE)
         ## Support CPACK package generation on debian like systems
@@ -289,19 +289,19 @@ endif(UNIX)
 
 if(APPLE) # Apple specific installation of the app
   # Add the .app Target
-  target_link_libraries(translateLocally PRIVATE ${LINK_LIBRARIES})
-  set_target_properties(translateLocally PROPERTIES
+  target_link_libraries(opusMT PRIVATE ${LINK_LIBRARIES})
+  set_target_properties(opusMT PROPERTIES
     BUNDLE True
     MACOSX_BUNDLE_BUNDLE_NAME ${CMAKE_PROJECT_NAME}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION_STRING_FULL}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
-    MACOSX_BUNDLE_GUI_IDENTIFIER "com.translatelocally.opusMT"
+    MACOSX_BUNDLE_GUI_IDENTIFIER "com.opusmt.opusMT"
     )
   # When on MacOS, we have a non-standard libarchive location because we get it via brew
-  target_include_directories(translateLocally-bin PRIVATE ${LibArchive_INCLUDE_DIR})
-  target_include_directories(translateLocally PRIVATE ${LibArchive_INCLUDE_DIR})
+  target_include_directories(opusMT-bin PRIVATE ${LibArchive_INCLUDE_DIR})
+  target_include_directories(opusMT PRIVATE ${LibArchive_INCLUDE_DIR})
   # produce .dmg This requires custom target due to https://gitlab.kitware.com/cmake/cmake/-/issues/16270
   # use dist/macdmg.sh to sign and notarize
   include(macdeployqt)
-  macdeployqt(translateLocally)
+  macdeployqt(opusMT)
 endif(APPLE)
