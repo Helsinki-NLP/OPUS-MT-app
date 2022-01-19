@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     qRegisterMetaType<Translation::Direction>("Translation::Direction");
 
     QApplication translateLocally(argc, argv);
-    QCoreApplication::setApplicationName("OPUS-MT");
+    QCoreApplication::setApplicationName("opusMT");
     QCoreApplication::setApplicationVersion(TRANSLATELOCALLY_VERSION_FULL);
 
     // Command line parsing
