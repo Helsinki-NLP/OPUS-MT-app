@@ -6,9 +6,9 @@ MY_APPLE_ID=""
 MY_APPLE_PST=""
 PATH_TO_BUILD_DIR=$1
 
-if [[ ! -d ${PATH_TO_BUILD_DIR}/translateLocally.app ]]
+if [[ ! -d ${PATH_TO_BUILD_DIR}/opusMT.app ]]
 then
-	echo "translateLocally.app not found in the path provided: ${PATH_TO_BUILD_DIR} . Please provide the path to the build directory."
+	echo "opusMT.app not found in the path provided: ${PATH_TO_BUILD_DIR} . Please provide the path to the build directory."
 	exit 1
 fi
 
@@ -44,10 +44,10 @@ echo "$MACDEPLOYQT_EXEC"
 if [[ -z "$MY_DEVELOPER_ID" ]]
 then
 	echo "Certificate not found, building unsigned dmg"
-	$MACDEPLOYQT_EXEC ${PATH_TO_BUILD_DIR}/translateLocally.app -always-overwrite -dmg
+	$MACDEPLOYQT_EXEC ${PATH_TO_BUILD_DIR}/opusMT.app -always-overwrite -dmg
 else
 	echo "Certicate found, building and signing dmg"
-	$MACDEPLOYQT_EXEC ${PATH_TO_BUILD_DIR}/translateLocally.app -always-overwrite -sign-for-notarization="$MY_DEVELOPER_ID" -dmg -appstore-compliant
+	$MACDEPLOYQT_EXEC ${PATH_TO_BUILD_DIR}/opusMT.app -always-overwrite -sign-for-notarization="$MY_DEVELOPER_ID" -dmg -appstore-compliant
 fi
 
 # Then try to notarize the .dmg
@@ -57,7 +57,7 @@ then
 	echo "Apple ID not defined, skipping notarization."
 else
 	echo "Notarizing .dmg..."
-	response=$(xcrun altool -t osx -f ${PATH_TO_BUILD_DIR}/translateLocally.dmg --primary-bundle-id com.translatelocally.com --notarize-app -u ${MY_APPLE_ID} -p ${MY_APPLE_PST})
+	response=$(xcrun altool -t osx -f ${PATH_TO_BUILD_DIR}/opusMT.dmg --primary-bundle-id com.opusmt.com --notarize-app -u ${MY_APPLE_ID} -p ${MY_APPLE_PST})
 	requestUUID=$(echo "${response}" | tr ' ' '\n' | tail -1)
 
 	while true;
@@ -72,7 +72,7 @@ else
 	  if [[ "${isSuccess}" != "" ]]
 	  then
 	      echo "Notarization done!"
-	      xcrun stapler staple -v ${PATH_TO_BUILD_DIR}/translateLocally.dmg
+	      xcrun stapler staple -v ${PATH_TO_BUILD_DIR}/opusMT.dmg
 	      echo "Stapler done!"
 	      break
 	  fi
