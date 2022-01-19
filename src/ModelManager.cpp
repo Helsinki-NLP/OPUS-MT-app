@@ -55,7 +55,7 @@ ModelManager::ModelManager(QObject *parent)
 {
     // Create/Load Settings and create a directory on the first run. Use mock QSEttings, because we want nativeFormat, but we don't want ini on linux.
     // NativeFormat is not always stored in config dir, whereas ini is always stored. We used the ini format to just get a path to a dir.
-    configDir_ = QFileInfo(QSettings(QSettings::IniFormat, QSettings::UserScope, "translateLocally", "translateLocally").fileName()).absoluteDir();
+    configDir_ = QFileInfo(QSettings(QSettings::IniFormat, QSettings::UserScope, "opusMT", "opusMT").fileName()).absoluteDir();
     if (!QDir(configDir_).exists()) {
         if (QFileInfo::exists(configDir_.absolutePath())) {
             std::cerr << "We want to store data at a directory at: " << configDir_.absolutePath().toStdString() << " but a file with the same name exists." << std::endl;
