@@ -1,6 +1,5 @@
 # OPUS-MT
 
-
 Fast and secure translation on your local machine with a GUI, powered by marian and Bergamot.
 The app is an adaptation of [translateLocally](https://github.com/XapaJIaMnu/translateLocally)
 and integrates publically avaiable translation models from the [OPUS-MT project](https://github.com/Helsinki-NLP/OPUS-MT) to bring fast and secure machine translation to the desktop of end users.
@@ -31,7 +30,6 @@ make -j5
 
 Requires `QT>=5 libarchive intel-mkl-static`. We make use of the `QT>=5 network`, `QT>=5 linguisticTool` and `QT>=5 svg` components. Depending on your distro, those may be split in separate package from your QT package (Eg `qt{6/7}-tools-dev`; `qt{5/6}-svg` or `libqt5svg5-dev`). QT6 is fully supported and its use is encouraged. `intel-mkl-static` may be part of `mkl` or `intel-mkl` packages.
 
-
 ## MacOS Build
 On MacOS, opusMT doesn't rely on MKL, but instead on Apple accelerate. If you want to build a portable executable that is able to run on multiple machines, we recommend using Qt's distribution of Qt, as opposed to homebrew's due to issues with [macdeployqt](https://github.com/XapaJIaMnu/translateLocally/issues/69). To produce a `.dmg`do:
 ```bash
@@ -54,6 +52,7 @@ Check the script for the environment variables that you need to set if you want 
 On Windows, we recommend using [vcpkg](https://github.com/Microsoft/vcpkg) to install all necessary packages and Visual Studio to perform the build.
 
 # Command line interface
+
 opusMT supports using the command line to perform translations. Example usage:
 
 ```bash
@@ -159,7 +158,6 @@ opusMT v0.0.2+a603422
 ```
 Note that this issue only occurs on Linux, as Windows and Mac (at least to my knowledge) always have an active display even in remote sessions.
 
-
 # Importing custom models
 opusMT supports importing custom models. opusMT uses the [Bergamot](https://github.com/browsermt/marian-dev) fork of [marian](https://github.com/marian-nmt/marian-dev). As such, it supports the vast majority marian models out of the box. You can just train your marian model and place it a directory. 
 ## Basic model import
@@ -204,7 +202,10 @@ And then changing your configuration `config.intgemm8bitalpha.yml` to point to t
 You can further achive another 30\%-40\% performance boost if you precompute the quantisation multipliers of the model and you use a lexical shortlist. The process for those is described in details at the Bergamot project's [Github](https://github.com/browsermt/students/tree/master/train-student#5-8-bit-quantization). Remember that you need to use the [Bergamot](https://github.com/browsermt/marian-dev) fork of Marian.
 
 Example script that converts a marian model to the most efficient 8-bit representation can also be found at Bergamot's [Github](https://github.com/browsermt/students/blob/master/esen/esen.student.tiny11/speed.cpu.intgemm8bitalpha.sh).
+
+
 # Acknowledgements
+
 <img src="https://raw.githubusercontent.com/XapaJIaMnu/translateLocally/master/eu-logo.png" data-canonical-src="https://raw.githubusercontent.com/XapaJIaMnu/translateLocally/master/eu-logo.png" width=10% />
 
 ## Bergamot
