@@ -8,11 +8,17 @@ and integrates publically avaiable translation models from the [OPUS-MT project]
 ## Downloads
 
 The app is in development and we provide a preliminary test version with no guarantees.
-The list of models will be extended in the near future and additional pre-compiled binaries will be available for download. Currently, you can use the following distributions:
+The list of models will be extended in the near future. The latest automatic build releases are available from:
 
-* [Mac OSX](https://object.pouta.csc.fi/OPUS-MT-models/app/opusMT.dmg)
-* [Source code](https://github.com/Helsinki-NLP/OPUS-MT-app)
-
+* [Mac OS Catalina 10.15](https://github.com/Helsinki-NLP/OPUS-MT-app/releases/download/latest/opusMT.macos-10.15.core-avx-i.dmg)
+* [Mac OS Big Sur 11.0](https://github.com/Helsinki-NLP/OPUS-MT-app/releases/download/latest/opusMT.macos-11..core-avx-i.dmg)
+* [Windows 2022](https://github.com/Helsinki-NLP/OPUS-MT-app/releases/download/latest/opusMT.windows-2022.core-avx-i.exe)
+* [Windows 2019](https://github.com/Helsinki-NLP/OPUS-MT-app/releases/download/latest/opusMT.windows-2019.core-avx-i.exe)
+* [Windows 2022](https://github.com/Helsinki-NLP/OPUS-MT-app/releases/download/latest/opusMT.windows-2022.core-avx-i.exe)
+* [Ubuntu 18.04](https://github.com/Helsinki-NLP/OPUS-MT-app/releases/download/latest/opusMT-v0.0.2+9098ccb-Ubuntu-18.04.AVX.deb)
+* [Ubuntu 18.04](https://github.com/Helsinki-NLP/OPUS-MT-app/releases/download/latest/opusMT-v0.0.2+9098ccb-Ubuntu-20.04.AVX.deb)
+* [Source zip](https://github.com/Helsinki-NLP/OPUS-MT-app/archive/refs/tags/latest.zip)
+* [Source tar.gz](https://github.com/Helsinki-NLP/OPUS-MT-app/archive/refs/tags/latest.tar.gz)
 
 
 

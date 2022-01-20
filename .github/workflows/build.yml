@@ -405,6 +405,6 @@ jobs:
          prerelease: true
          title: "Latest Build"
          files: |
-                /home/runner/work/opusMT/opusMT/*.dmg/*.dmg
-                /home/runner/work/opusMT/opusMT/*.deb/*.deb
-                /home/runner/work/opusMT/opusMT/*.exe/*.exe
+                /home/runner/work/OPUS-MT-app/OPUS-MT-app/*.dmg/*.dmg
+                /home/runner/work/OPUS-MT-app/OPUS-MT-app/*.deb/*.deb
+                /home/runner/work/OPUS-MT-app/OPUS-MT-app/*.exe/*.exe
