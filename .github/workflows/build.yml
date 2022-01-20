@@ -135,23 +135,23 @@ jobs:
       shell: bash
       run: ./opusMT --version
 
-    - name: Produce DMG and Sign # This overrides the previous dmg # We follow https://localazy.com/blog/how-to-automatically-sign-macos-apps-using-github-actions
-      working-directory: ${{github.workspace}}/build               # it should be secure as those can't leak unless we accept a PR with a bad workflow.
-      shell: bash
-      env: 
-          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
-          MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_PST: ${{ secrets.NOTARIZE_PST }}
-          APPLE_DEVELOPER_ID: ${{ secrets.APPLE_DEVELOPER_ID }}
-      run: |
-            echo $MACOS_CERTIFICATE | base64 --decode > certificate.p12
-            security create-keychain -p 1234asdf my.new.keychain
-            security default-keychain -s my.new.keychain
-            security unlock-keychain -p 1234asdf my.new.keychain
-            security import certificate.p12 -k my.new.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
-            security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k 1234asdf my.new.keychain
-            ../dist/macdmg.sh ${{github.workspace}}/build
+    # - name: Produce DMG and Sign # This overrides the previous dmg # We follow https://localazy.com/blog/how-to-automatically-sign-macos-apps-using-github-actions
+    #   working-directory: ${{github.workspace}}/build               # it should be secure as those can't leak unless we accept a PR with a bad workflow.
+    #   shell: bash
+    #   env: 
+    #       MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+    #       MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
+    #       APPLE_ID: ${{ secrets.APPLE_ID }}
+    #       APPLE_PST: ${{ secrets.NOTARIZE_PST }}
+    #       APPLE_DEVELOPER_ID: ${{ secrets.APPLE_DEVELOPER_ID }}
+    #   run: |
+    #         echo $MACOS_CERTIFICATE | base64 --decode > certificate.p12
+    #         security create-keychain -p 1234asdf my.new.keychain
+    #         security default-keychain -s my.new.keychain
+    #         security unlock-keychain -p 1234asdf my.new.keychain
+    #         security import certificate.p12 -k my.new.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
+    #         security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k 1234asdf my.new.keychain
+    #         ../dist/macdmg.sh ${{github.workspace}}/build
 
     - name:  Encode the arch in the .dmg file # as we build with march=native now, record our MARCH
       working-directory: ${{github.workspace}}/build
