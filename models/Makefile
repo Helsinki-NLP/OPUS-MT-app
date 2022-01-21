@@ -2,12 +2,16 @@
 # create model packages and update the catalog
 #
 
+SHELL := bash
+DATE  := ${shell date +%F}
+
 ## add all models to RELEASED_MODELS that you want to include
 
-STORAGE_URL     = https://object.pouta.csc.fi
-MODEL_CONTAINER = Tatoeba-MT-models
-MODEL_INDEX     = ${STORAGE_URL}/${MODEL_CONTAINER}/index.txt
-RELEASED_MODELS = swe-fin/opusTCv20210807+nopar+ft95-2022-01-19.zip
+STORAGE_URL      = https://object.pouta.csc.fi
+MODEL_CONTAINER  = Tatoeba-MT-models
+OPUSMT_CONTAINER = OPUS-MT-models
+MODEL_INDEX      = ${STORAGE_URL}/${MODEL_CONTAINER}/index.txt
+RELEASED_MODELS  = swe-fin/opusTCv20210807+nopar+ft95-2022-01-19.zip
 
 
 ## set the path to marian-conv
@@ -53,8 +57,6 @@ MODEL_DIST	= ${MODEL_DIR}.tar.gz
 
 .PHONY: all
 all:
-	mkdir -p app
-	wget -O ${CATALOG} ${MODEL_BASE_URL}/models.json
 	for m in ${RELEASED_MODELS}; do \
 	  ${MAKE} MODEL=$$m convert; \
 	done
@@ -82,6 +84,17 @@ info:
 	@echo "  model type: ${MODEL_TYPE}"
 	@echo "  model data: ${MODEL_DATA}"
 
+## upload models and the catalog
+## NOTE: this only works on CSC with allas tools
+.PHONY: upload
+upload:
+	( module load allas; \
+	  source /appl/opt/allas/env/allas_conf -s; \
+	  swift upload ${OPUSMT_CONTAINER} app/models/*.tar.gz; \
+	  swift copy --destination /${OPUSMT_CONTAINER}/app/models_${DATE}.json ${OPUSMT_CONTAINER} app/models.json; \
+	  swift upload ${OPUSMT_CONTAINER} app/models.json )
+
+
 ${MODEL_DIST}:
 	${MAKE} model
 	cd ${dir $@} && tar -czf ${notdir $@} ${notdir $(@:.tar.gz=)}
@@ -89,6 +102,10 @@ ${MODEL_DIST}:
 	${MAKE} cleanup
 
 ${CATALOG}: ${MODEL_DIST}
+	-if [ ! -e $@ ]; then \
+	  mkdir -p ${dir $@}; \
+	  wget -O ${CATALOG} ${MODEL_BASE_URL}/models.json; \
+	fi
 	./generate_models_json.py ${CATALOG} ${MODEL_DIST} ${MODEL_DIR} models ${MODEL_BASE_URL}
 
 .PHONY: cleanup
