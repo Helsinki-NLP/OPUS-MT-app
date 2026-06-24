@@ -16,21 +16,31 @@ int main(int argc, char *argv[])
     qRegisterMetaType<Translation>("Translation");
     qRegisterMetaType<QVector<WordAlignment>>("QVector<WordAlignment>");
     qRegisterMetaType<Translation::Direction>("Translation::Direction");
+    qRegisterMetaType<QList<QStringList>>("QList<QStringList>");
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0)) // https://www.qt.io/blog/whats-new-in-qmetatype-qvariant
+    qRegisterMetaTypeStreamOperators<QList<QStringList>>("QList<QStringList>");
+#endif
+
+    // Check for CLIOnly mode. In CLIOnly mode we create QCoreApplication that doesn't require a display plugin.
+    // In case we do not need CLIOnly mode, skip the command line parsing and go straght to the GUI instantiation.
+    {
+        QCoreApplication translateLocally(argc, argv);
+        QCoreApplication::setApplicationName("translateLocally");
+        QCoreApplication::setApplicationVersion(TRANSLATELOCALLY_VERSION_FULL);
+        QCommandLineParser parser;
+        translateLocally::CLIArgumentInit(translateLocally, parser);
+
+        // Launch application unless we're supposed to be in CLI mode
+        if (translateLocally::isCLIOnly(parser)) {
+            return CommandLineIface().run(parser); // Also takes care of exit codes
+        }
+    }
 
     QApplication translateLocally(argc, argv);
     QCoreApplication::setApplicationName("opusMT");
     QCoreApplication::setApplicationVersion(TRANSLATELOCALLY_VERSION_FULL);
 
-    // Command line parsing
-    QCommandLineParser parser;
-    translateLocally::CLIArgumentInit(translateLocally, parser);
-
-    // Launch application unless we're supposed to be in CLI mode
-    if (translateLocally::isCLIOnly(parser)) {
-        return CommandLineIface().run(parser); // Also takes care of exit codes
-    } else {
-        MainWindow w;
-        w.show();
-        return translateLocally.exec();
-    }
+    MainWindow w;
+    w.show();
+    return translateLocally.exec();
 }

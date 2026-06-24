@@ -20,11 +20,17 @@ $HOME/.config/translateLocally
 * https://github.com/browsermt/bergamot-translator
 * https://github.com/browsermt/students/tree/master/train-student
 * Mozilla browser app demo: https://mozilla.github.io/translate/
+* discussion forum: https://discourse.translatelocally.com/
 
 MT half	marathon tutorials (marianNMT)
 * https://github.com/ricardorei/MT-Evaluation-Tutorial
 * https://github.com/tilde-nlp/runtime-domain-adaptation-tutorial/blob/master/README.md
 * https://nbogoychev.com/efficient-machine-translation/
+
+automatic builds:
+* https://localazy.com/blog/how-to-automatically-sign-macos-apps-using-github-actions
+* https://localazy.com/blog/how-to-automatically-sign-macos-apps-using-github-actions
+* https://developer.apple.com/support/membership-fee-waiver/
 
 mobile apps:
 * https://medium.com/@applichic/flutter-google-translate-part-1-63b50c93d873
@@ -62,6 +68,11 @@ See also https://stackoverflow.com/questions/7244321/how-do-i-update-or-sync-a-f
 
 
 
+# Distribution package for Mac OSX
+
+* check info about signing apps: https://localazy.com/blog/how-to-automatically-sign-macos-apps-using-github-actions
+
+
 # Compilation on Mac OSX
 
 
@@ -70,6 +81,7 @@ See also https://stackoverflow.com/questions/7244321/how-do-i-update-or-sync-a-f
 ```
 port install qt5 qt5-qttools qt5-qtsvg libarchive libiconv OpenBLAS
 ```
+
 
 
 * install Intel MKL (but that does not work via MacPorts I believe)
@@ -98,8 +110,6 @@ Even after uninstalling qt6 it is still found by cmake. I had to manually remove
 # find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Gui PrintSupport Widgets LinguistTools Network DBus Svg REQUIRED)
 find_package(QT NAMES Qt5 COMPONENTS Core Gui PrintSupport Widgets LinguistTools Network DBus Svg REQUIRED)
 ```
-
-
 
 
 ## Problem with linking to correct libiconv

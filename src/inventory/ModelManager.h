@@ -7,8 +7,12 @@
 #include <iostream>
 #include "Network.h"
 #include "types.h"
+#include "settings/Settings.h"
+#include "RepoManager.h"
 
 constexpr const char* kModelListUrl = "https://object.pouta.csc.fi/OPUS-MT-models/app/models.json";
+// constexpr const char* kModelListUrl = "https://translatelocally.com/models.json";
+// constexpr const char* kModelListUrl = "https://object.pouta.csc.fi/OPUS-MT-models/app/models.json";
 
 namespace translateLocally {
     namespace models {
@@ -27,11 +31,12 @@ struct Model {
     QString src;
     QString trg;
     QString type; // Base or tiny
+    QString repository = "unknown"; // Repository that the model belongs to. If we don't have that information, default to unknown.
     QByteArray checksum;
-    float localversion  = -1.0f;
-    float localAPI = -1.0f;
-    float remoteversion = -1.0f;
-    float remoteAPI = -1.0f;
+    int localversion  = -1;
+    int localAPI = -1;
+    int remoteversion = -1;
+    int remoteAPI = -1;
 
     inline void set(QString key, QString val) {
         if (key == "shortName") {
@@ -48,13 +53,15 @@ struct Model {
             trg = val;
         } else if (key == "type") {
             type = val;
+        } else if (key == "repository") {
+            repository = val;
         } else if (key == "checksum") {
             checksum = QByteArray::fromHex(val.toUtf8());
         } else {
             std::cerr << "Unknown key type. " << key.toStdString() << " Something is very wrong!" << std::endl;
         }
     }
-    inline void set(QString key, float val) {
+    inline void set(QString key, int val) {
         if (key == "localversion") {
             localversion = val;
         } else if (key == "localAPI") {
@@ -78,7 +85,7 @@ struct Model {
 
     inline bool isSameModel(Model const &model) const {
         // TODO: matching by name might not be very robust
-        return shortName == model.shortName;
+        return shortName == model.shortName && repository == model.repository;
     }
 
     inline bool operator<(const Model& other) const {
@@ -86,7 +93,7 @@ struct Model {
     }
 
     inline bool outdated() const {
-        return localversion<remoteversion || localAPI < remoteAPI;
+        return localversion < remoteversion || localAPI < remoteAPI;
     }
 
     // Is-equal operator for removing models from list
@@ -110,7 +117,7 @@ Q_DECLARE_METATYPE(Model)
 class ModelManager : public QAbstractTableModel {
         Q_OBJECT
 public:
-    ModelManager(QObject *parent);
+    ModelManager(QObject *parent, Settings *settings);
 
     /**
      * @Brief extract a model into the directory of models managed by this
@@ -165,6 +172,8 @@ public:
      */
 
     const QList<Model>& getNewModels() const;
+
+    RepoManager * getRepoManager();
     
     /**
      * @brief whether or not fetchRemoteModels is in progress
@@ -175,6 +184,7 @@ public:
 
     enum Column {
         Name,
+        Repository,
         Version
     };
 
@@ -192,6 +202,8 @@ public slots:
      * finished (either successfully or not) fetchedRemoteModels is emitted.
      * On success localModelsChanged() will also be emitted as fetching remote
      * models causes updates on the outdated() status of local models.
+     * By default, it fetches models from the official translateLocally repo, but can also fetch
+     * models from a 3rd party repository.
      */
     void fetchRemoteModels();
     
@@ -235,6 +247,7 @@ private:
     QList<Model> updatedModels_;
 
     Network *network_;
+    RepoManager repositories_;
     bool isFetchingRemoteModels_;
 
 signals:

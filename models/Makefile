@@ -11,7 +11,79 @@ STORAGE_URL      = https://object.pouta.csc.fi
 MODEL_CONTAINER  = Tatoeba-MT-models
 OPUSMT_CONTAINER = OPUS-MT-models
 MODEL_INDEX      = ${STORAGE_URL}/${MODEL_CONTAINER}/index.txt
-RELEASED_MODELS  = swe-fin/opusTCv20210807+nopar+ft95-2022-01-19.zip
+
+
+RELEASED_MODELS = ukr-eng/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-23.zip \
+		ukr-fra/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-21.zip \
+		ukr-spa/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-21.zip \
+		ces+slk-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-23.zip \
+		deu-ukr/opusTCv20210807+nopar+ftmono+ft95-sepvoc_transformer-tiny11-align_2022-03-23.zip \
+		eng-ukr/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-23.zip \
+		gmq-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-23.zip \
+		spa-ukr/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-21.zip
+
+
+# done:
+
+# 	eng-fin/opusTCv20210807+nopar+ft95-jointvoc_transformer-tiny11-align_2022-01-27.zip
+#	eng-fin/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-01-25.zip
+#	swe-fin/opusTCv20210807+nopar+ft95-2022-01-19.zip \
+
+#	ukr-bul/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip \
+#	ukr-dan/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-13.zip \
+#	ukr-deu/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip \
+#	ukr-eng/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-05.zip
+#	ukr-fin/opusTCv20210807+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip \
+#	ukr-hun/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip \
+#	ukr-lit/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-17.zip
+#	ukr-nob/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-13.zip \
+# 	ukr-pol/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-17.zip
+#	ukr-ron/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip \
+#	ukr-swe/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip \
+#	ukr-tur/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-13.zip \
+
+#	deu-ukr/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-20.zip \
+#	eng-ukr/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-05.zip
+# 	fra-ukr/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-20.zip
+#	fin-ukr/opusTCv20210807+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip \
+#	hun-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip
+# 	lit-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-17.zip \
+#	pol-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip \
+#	ron-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip \
+#	swe-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip
+
+
+# currently best ukr models:
+
+# ukr-bul/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip
+# ukr-dan/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-13.zip
+# ukr-deu/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip
+# ukr-eng/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-23.zip
+# ukr-fin/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-13.zip
+# ukr-fra/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-21.zip
+# ukr-hun/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-13.zip
+# ukr-lit/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-17.zip
+# ukr-nob/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-13.zip
+# ukr-pol/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-17.zip
+# ukr-ron/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip
+# ukr-spa/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-21.zip
+# ukr-swe/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-13.zip
+# ukr-tur/opusTCv20210807+pft-sepvoc_transformer-tiny11-align_2022-03-13.zip
+
+# ces+slk-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-23.zip
+# deu-ukr/opusTCv20210807+nopar+ftmono+ft95-sepvoc_transformer-tiny11-align_2022-03-23.zip
+# eng-ukr/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-23.zip
+# fin-ukr/opusTCv20210807+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip
+# fra-ukr/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-20.zip
+# gmq-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-23.zip
+# hun-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip
+# lit-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-17.zip
+# ron-ukr/opusTCv20210807+bt+pbt+pft-sepvoc_transformer-tiny11-align_2022-03-16.zip
+# spa-ukr/opusTCv20210807+nopar+ft95-sepvoc_transformer-tiny11-align_2022-03-21.zip
+
+
+
+
 
 
 ## set the path to marian-conv
@@ -30,8 +102,8 @@ SRC          := ${firstword ${subst -, ,${LANGPAIRID}}}
 TRG          := ${lastword ${subst -, ,${LANGPAIRID}}}
 SRCLANG      := ${firstword ${subst -, ,${LANGPAIR}}}
 TRGLANG      := ${lastword ${subst -, ,${LANGPAIR}}}
-RELEASE_DATE := ${shell echo '${basename ${MODEL}}' | rev | cut -f1-3 -d\- | rev}
-VERSION      := ${shell echo '${basename ${MODEL}}' | rev | cut -f2-3 -d\- | rev | tr '-' '.'}
+RELEASE_DATE := ${shell echo '${basename ${MODEL}}' | tr '_' '-' | rev | cut -f1-3 -d\- | rev}
+VERSION      := ${shell echo '${basename ${MODEL}}' | tr '_' '-' | rev | cut -f2-3 -d\- | rev | tr '-' '.'}
 
 CATALOG      := app/models.json
 
@@ -94,6 +166,8 @@ upload:
 	  swift copy --destination /${OPUSMT_CONTAINER}/app/models_${DATE}.json ${OPUSMT_CONTAINER} app/models.json; \
 	  swift upload ${OPUSMT_CONTAINER} app/models.json )
 
+upload-catalog:
+	swift upload ${OPUSMT_CONTAINER} app/models.json
 
 ${MODEL_DIST}:
 	${MAKE} model
@@ -155,15 +229,20 @@ ${MODEL_DIR}/catalog-entry.yml: ${MODEL_DIR}/model_info.json
 	@echo 'description: "${LANGPAIR} ${MODELINFO_TYPE} model (${MODEL_DATA})"'          >> $@
 
 ${MODEL_DIR}/model_info.json: ${MODEL_DIR}/config.intgemm8bitalpha.yml
-	@echo '{'                                                  > $@
-	@echo '  "modelName": "${LANGPAIR} ${MODELINFO_TYPE}",'   >> $@
-	@echo '  "shortName": "${LANGPAIRID}-${MODELINFO_TYPE}",' >> $@
-	@echo '  "type":      "${MODEL_TYPE}",'                   >> $@
-	@echo '  "src":       "${SRCLANG}",'                      >> $@
-	@echo '  "trg":       "${TRGLANG}",'                      >> $@
-	@echo '  "version":   ${VERSION},'                        >> $@
-	@echo '  "API":       1.0'                                >> $@
-	@echo '}'                                                 >> $@
+	@echo '{'                                                   > $@
+	@echo '  "modelName":  "${LANGPAIR} ${MODELINFO_TYPE}",'    >> $@
+	@echo '  "shortName":  "${LANGPAIRID}-${MODELINFO_TYPE}",'  >> $@
+	@echo '  "type":       "${MODEL_TYPE}",'                    >> $@
+	@echo '  "src":        "${SRCLANG}",'                       >> $@
+	@echo '  "trg":        "${TRGLANG}",'                       >> $@
+	@echo '  "srcTags": {'                                      >> $@
+	@echo '      "${SRC}": "${SRCLANG}"'                        >> $@
+	@echo '  },'                                                >> $@
+	@echo '  "trgTag":     "${TRG}",'                           >> $@
+#	@echo '  "repository": "OPUS-MT",'                          >> $@
+	@echo '  "version":    ${VERSION},'                         >> $@
+	@echo '  "API":        1.0'                                 >> $@
+	@echo '}'                                                   >> $@
 
 ${MODEL_DIR}/config.intgemm8bitalpha.yml: 	${MODEL_DIR}/model.intgemm8.bin \
 						${MODEL_DIR}/vocab.src.spm \
@@ -189,7 +268,8 @@ endif
 	@echo 'workspace: 2000' 	>> $@
 	@echo 'max-length-factor: 2.0' 	>> $@
 	@echo 'skip-cost: true' 	>> $@
-	@echo 'gemm-precision: int8shift' >> $@
+	@echo 'gemm-precision: int8'    >> $@
+#	@echo 'gemm-precision: int8shift' >> $@
 
 
 

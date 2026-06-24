@@ -7,6 +7,9 @@ and integrates publically avaiable translation models from the [OPUS-MT project]
 
 ## Downloads
 
+
+You can download the latest automatic build for Windows, Linux and Mac from the [releases](https://github.com/Helsinki-NLP/OPUS-MT-app/releases) github tab.
+
 The app is in development and we provide a preliminary test version with no guarantees.
 The list of models will be extended in the near future. [Automatic builds](https://github.com/Helsinki-NLP/OPUS-MT-app/releases) are available from:
 
@@ -222,3 +225,9 @@ This project was made possible through the combined effort of all researchers an
 ## OPUS-MT
 
 The OPUS-MT project received funding  by the [European Language Grid](https://www.european-language-grid.eu/) as [pilot project 2866](https://live.european-language-grid.eu/catalogue/#/resource/projects/2866), is supported by the [FoTran project](https://www.helsinki.fi/en/researchgroups/natural-language-understanding-with-cross-lingual-grounding), funded by the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 771113), and the [MeMAD project](https://memad.eu/), funded by the European Union’s Horizon 2020 Research and Innovation Programme under grant agreement No 780069. We are also grateful for the generous computational resources and IT infrastructure provided by [CSC -- IT Center for Science](https://www.csc.fi/), Finland.
+
+
+## HPLT
+
+This project has received funding from the European Union’s Horizon Europe research and innovation programme under grant agreement No 101070350 and from UK Research and Innovation (UKRI) under the UK government’s Horizon Europe funding guarantee [grant number 10052546]
+
